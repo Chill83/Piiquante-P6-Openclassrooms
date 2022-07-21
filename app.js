@@ -2,8 +2,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-// Importation route
+// Importation routes
 const userRoutes = require('./routes/user');
+const sauceRoutes = require('./routes/sauce');
 
 // Connection et authentification à MongoDB (base de données)
 mongoose.connect('mongodb+srv://Aymeric:projet6openclassrooms@cluster0.tr0qzir.mongodb.net/?retryWrites=true&w=majority',
@@ -27,6 +28,7 @@ app.use((req, res, next) => {
 
 // Configuration routes
 app.use('/api/auth', userRoutes);
+// app.use('/api/sauces', sauceRoutes);
 
 // Exportation modules
 module.exports = app;
