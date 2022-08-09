@@ -25,23 +25,27 @@ exports.createSauce = (req, res, next) => {
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
         likes: 0,
         dislikes: 0,
-        usersLiked: '',
-        usersDisliked: ''
+        usersLiked: [],
+        usersDisliked: []
     });
     sauce.save()
         .then(() => res.status(201).json({ message: "Sauce enregistré !" }))
         .catch(error => res.status(400).json({error}));
 };
 
-// // Fonction pour modifier une sauce
-// exports.modifySauce = (req, res, next) => {
-
-// };
+// Fonction pour modifier une sauce
+exports.modifySauce = (req, res, next) => {
+    Sauce.updateOne({_id: req.params.id}, {...req.body, _id: req.params.id})
+    .then(() => res.status(200).json({ message: 'Sauce modifiée !'}))
+    .catch(error => req.status(400).json({error}));
+};
 
 // // Fonction pour supprimer une sauce
-// exports.deleteSauce = (req, res, next) => {
-
-// };
+exports.deleteSauce = (req, res, next) => {
+    Sauce.deleteOne({_id: req.params.id})
+    .then(() => res.status(200).json({ message: "Sauce supprimée !"}))
+    .catch(error => res.status(400).json({error}));
+};
 
 // // Fonction Like/dislike
 // exports.likeAndDislikeSauces = (req, res, next) => {
