@@ -1,4 +1,4 @@
-// Importation modules
+// Importation packages
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 

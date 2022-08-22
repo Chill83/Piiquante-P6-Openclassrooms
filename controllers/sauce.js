@@ -1,23 +1,29 @@
-// Importation modèle saue
+// Importation module du modèle sauce
 const Sauce = require('../models/sauce');
-// Importation Node fs
+// Importation package Node fs
 const fs = require('fs');
 
-// Fonction renvoyer toutes les sauces de la base de données
+
+
+// ---------------------------------   Controllers sauce  -------------------------------------------- //
+//  -------------------------------------------------------------------------------------------------- //
+
+
+// --------------  Renvoyer toutes les sauces de la base de données  -----------------
 exports.getAllSauces = (req, res, next) => {
     Sauce.find()
         .then(sauces => res.status(200).json(sauces))
         .catch(error => res.status(400).json({error}));
 };
 
-// Fonction renvoyer la sauce avec l'_id fourni
+// -----------------  Renvoyer la sauce avec l'_id fourni  --------------
 exports.getOneSauce = (req, res, next) => {
     Sauce.findOne({ _id: req.params.id})
         .then(sauce => res.status(200).json(sauce))
         .catch(error => res.status(404).json({error}));
 };
 
-// // Fonction poster une sauce
+// -------------------  Créer une sauce --------------------------
 exports.createSauce = (req, res, next) => {
     const sauceObject = JSON.parse(req.body.sauce);
     delete sauceObject._id;
@@ -35,7 +41,7 @@ exports.createSauce = (req, res, next) => {
         .catch(error => res.status(400).json({error}));
 };
 
-// Fonction pour modifier une sauce
+// ---------------   Fonction pour modifier une sauce -------------------
 exports.modifySauce = (req, res, next) => {
     // Cas où l'image est modifiée
     if (req.file) {
@@ -67,7 +73,7 @@ exports.modifySauce = (req, res, next) => {
     }
 };
 
-// // Fonction pour supprimer une sauce
+// --------------------- Fonction pour supprimer une sauce  ------------------------
 exports.deleteSauce = (req, res, next) => {
     Sauce.findOne({ _id: req.params.id })
     .then(sauce => {
@@ -81,7 +87,7 @@ exports.deleteSauce = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
 };
 
-// // Fonction Like/dislike
+// --------------------  Fonction Like/dislike  --------------------------
 exports.likeAndDislikeSauces = (req, res, next) => {
 
     // Si l'utilisateur like
@@ -126,3 +132,7 @@ exports.likeAndDislikeSauces = (req, res, next) => {
         .catch(error => res.status(400).json({ error }))
     }
 };
+
+
+//  ------------------------------------------------------------------------------------------------  //
+//  -------------------------------    Fin controllers sauce   -------------------------------------  //

@@ -1,6 +1,7 @@
-// // Importation JSONWEBTOKEN
+// // Importation package JSONWEBTOKEN
 const jwt = require('jsonwebtoken');
 
+// Exportation module de vérification du token
 module.exports = (req,res, next) => {
     try {
         const token = req.headers.authorization.split(' ')[1];

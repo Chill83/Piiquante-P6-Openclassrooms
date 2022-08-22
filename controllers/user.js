@@ -1,12 +1,16 @@
-// Importation package bcrypt
+// Importation packages
 const bcrypt = require('bcrypt');
-// Importation package JWT
 const jwt = require('jsonwebtoken');
-
-// Importation modèle User
+// Importation module du schema User
 const User = require('../models/user');
 
-// Fonction inscription
+
+
+//  ------------------------  Controllers users  -------------------------------------  //
+//  ----------------------------------------------------------------------------------- //
+
+
+// ------------  Fonction inscription  ------------------
 exports.signup = (req,res, next) => {
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
@@ -21,7 +25,7 @@ exports.signup = (req,res, next) => {
         .catch(error => res.status(500).json({error}));
 };
 
-// Fonction connection
+// --------------  Fonction connection  ---------------------
 exports.login = (req, res, next) => {
     User.findOne({email: req.body.email})
         .then(user => {
@@ -52,3 +56,7 @@ exports.login = (req, res, next) => {
             req.status(500).json( {error} );
         })
 };
+
+
+//  ------------------------  Fin controllers users  -------------------------------------  //
+//  -------------------------------------------------------------------------------------- //

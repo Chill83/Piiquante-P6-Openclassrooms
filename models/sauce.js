@@ -1,5 +1,7 @@
+// Importation packages
 const mongoose = require('mongoose');
 
+// Schema Sauce
 const sauceSchema = mongoose.Schema({
     userId: {type: String, required: true},
     name: {type: String, required:true},
@@ -14,4 +16,5 @@ const sauceSchema = mongoose.Schema({
     usersDisliked: {type: Array, required:false},
 });
 
+// Exportation module du schema Sauce
 module.exports = mongoose.model('Sauce', sauceSchema);

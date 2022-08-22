@@ -1,7 +1,7 @@
-// Importation modules
+// Importation packages
 const express = require('express');
 const router = express.Router();
-// Initialisation variables et constantes
+// Importation modules
 const userCtrl = require('../controllers/user');
 
 // Routes
