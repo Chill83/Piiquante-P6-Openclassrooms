@@ -1,5 +1,6 @@
-// Importation modules
+// Importation packages
 const express = require('express');
+const expressRateLimit = require('express-rate-limit');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
@@ -19,6 +20,15 @@ mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGOD
 
 // J'applique express
 const app = express();
+
+// Je configure express-rate-limit
+const limiter = expressRateLimit({
+  max: 100,
+  windowsMs: 15 * 60 * 1000,
+  message: "Too many request from this IP adress"
+})
+// J'applique express-rate-limit
+app.use('/api', limiter);
 
 // Utilisation Helmet
 app.use(helmet());
