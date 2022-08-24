@@ -6,6 +6,7 @@ const cors = require('cors');
 const path = require('path');
 const helmet = require('helmet');
 const dotenv = require('dotenv').config();
+const xssClean = require('xss-clean');
 
 // Importation routes
 const userRoutes = require('./routes/user');
@@ -35,6 +36,9 @@ app.use(helmet());
 
 // Configuration CORS
 app.use(cors());
+
+// J'applique Xss-Clean
+app.use(xssClean());
 
 // Reconnaitre les requêtes en objets JSON
 app.use(express.json());
