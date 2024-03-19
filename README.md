@@ -1,6 +1,7 @@
 # Piiquante-P6-Openclassrooms
 
-Build a secure API
+- API with Node.js, Express, mongoDB, NoSQL
+- user authentication, create read update delete, img upload, like/dislikes, ...
 
 Prerequisites
 - You will need to have `Node` and `npm` installed locally on your machine.
